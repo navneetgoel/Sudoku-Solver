@@ -1,31 +1,36 @@
-class SudokuSolver{
+class SudokuSolver:
+    """
+    intializes the boards
+    @param: Board as 2d Matrix
+    @Return: None
+    """
     def __init__(self, board):
         self.board = board
-}
 
-
-
-
-
-def print_board(bo):
     """
-    prints the board
-    :param bo: 2d List of ints
-    :return: None
+    This method prints the board
+    @param: None
+    @Return: None
     """
-    for i in range(len(bo)):
-        if i % 3 == 0 and i != 0:
-            print("- - - - - - - - - - - - - -")
-        for j in range(len(bo[0])):
-            if j % 3 == 0:
-                print(" | ",end="")
+    def print_board(self):
+        for row_index in range(len(self.board)):
+            if row_index % 3 == 0:
+                print("--------------------")
+            for col_index in range(len(self.board[0])):
+                if col_index %3 == 0:
+                    print("|", end="")
+                
+                if col_index == 8:
+                    print(self.board[row_index][col_index], end="\n")
+                else:
+                    print(str(self.board[row_index][col_index])+" ", end="")
 
-            if j == 8:
-                print(bo[i][j], end="\n")
-            else:
-                print(str(bo[i][j]) + " ", end="")
 
-board = [
+"""
+Driver Method for testing Sudoko Solver
+"""
+def main():
+    board = [
         [7, 8, 0, 4, 0, 0, 1, 2, 0],
         [6, 0, 0, 0, 7, 5, 0, 0, 9],
         [0, 0, 0, 6, 0, 1, 0, 7, 8],
@@ -37,4 +42,8 @@ board = [
         [0, 4, 9, 2, 0, 6, 0, 0, 7]
     ]
 
-print_board(board)
+    Solution = SudokuSolver(board)
+    Solution.print_board()
+
+if __name__ == "__main__":
+    main()
