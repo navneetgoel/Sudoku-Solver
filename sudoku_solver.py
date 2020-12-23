@@ -2,7 +2,7 @@ class SudokuSolver:
     """
     intializes the boards
     @param: Board as 2d Matrix
-    @Return: None
+    @return: None
     """
     def __init__(self, board):
         self.board = board
@@ -10,7 +10,7 @@ class SudokuSolver:
     """
     This method prints the board
     @param: None
-    @Return: None
+    @return: None
     """
     def print_board(self):
         for row_index in range(len(self.board)):
@@ -24,6 +24,16 @@ class SudokuSolver:
                     print(self.board[row_index][col_index], end="\n")
                 else:
                     print(str(self.board[row_index][col_index])+" ", end="")
+    
+    """
+    This method sove sudoku using backtracking algorithm
+    @param: None
+    @return: Solution 
+    """
+    def solve_sudoko(self):
+
+
+
 
 
 """
