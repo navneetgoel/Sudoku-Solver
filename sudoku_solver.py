@@ -31,6 +31,26 @@ class SudokuSolver:
     @return: Solution 
     """
     def solve_sudoko(self):
+        #To find empty space in the board
+        isEmpty = find_empty_space(self.board)
+        if isEmpty:
+            row = isEmpty
+            col = isEmpty
+        else:
+            return True
+        
+        for i in range(1,10):
+            #chekh is the move is valid
+            if isValid(self.board, (row, col), i):
+                self.board[row][col] = i
+
+                if self.solve_sudoko():
+                    return True
+                
+                self.board[row][col] = 0
+        return False
+
+
 
 
 
