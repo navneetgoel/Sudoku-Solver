@@ -49,6 +49,19 @@ class SudokuSolver:
                 
                 self.board[row][col] = 0
         return False
+    
+    """
+    This method finds the empty space in the board
+    @param: None
+    @return: row index, column index
+    """
+    def isEmpty(self):
+        for row_index in range(len(self.board)):
+            for col_index in range(len(self.board[0])):
+                if self.board[row_index][col_index] == 0:
+                    return (row_index, col_index)
+        return None
+
 
 
 
@@ -74,6 +87,7 @@ def main():
 
     Solution = SudokuSolver(board)
     Solution.print_board()
+    Solution.solve_sudoko()
 
 if __name__ == "__main__":
     main()
