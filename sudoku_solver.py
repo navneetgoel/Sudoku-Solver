@@ -34,14 +34,14 @@ class SudokuSolver:
         #To find empty space in the board
         empty_space_location = self.findEmpty()
         if empty_space_location:
-            row = empty_space_location
-            col = empty_space_location
+            row = empty_space_location[0]
+            col = empty_space_location[1]
         else:
             return True
         
         for i in range(1,10):
             #chekh is the move is valid
-            if isValid((row, col), i):
+            if self.isValid(row, col, i):
                 self.board[row][col] = i
 
                 if self.solve_sudoko():
@@ -59,7 +59,7 @@ class SudokuSolver:
         for row_index in range(len(self.board)):
             for col_index in range(len(self.board[0])):
                 if self.board[row_index][col_index] == 0:
-                    return (row_index, col_index)
+                    return [row_index, col_index]
         return None
     
     """
@@ -68,24 +68,24 @@ class SudokuSolver:
     @param value: Number between 1-9
     @return: Boolean
     """
-    def isValid(self, position, value):
+    def isValid(self, row, col , value):
         #Checking row
         for row_index in range(len(self.board)):
-            if self.board[position[0]][row_index] == value and position[1] != row_index:
+            if self.board[row][row_index] == value and col != row_index:
                 return False
         
         #Checking Column
         for row_index in range(len(self.board)):
-            if self.board[row_index][position[1]] == value and position[1] != row_index:
+            if self.board[row_index][col] == value and col != row_index:
                 return False
         
         #checking boxes
-        box_x = position[1]//3
-        box_y = position[0]//3
+        box_x = col//3
+        box_y = row//3
 
         for i in range(box_y*3, box_y*3+3):
             for j in range(box_x*3, box_x*3+3):
-                if self.board[i][j] == value and (i,j) != position:
+                if self.board[i][j] == value and (i, j) != (row, col):
                     return False
         
         return True
@@ -119,6 +119,9 @@ def main():
     Solution = SudokuSolver(board)
     Solution.print_board()
     Solution.solve_sudoko()
+    print("")
+    print("-------SOLUTION--------")
+    Solution.print_board()
 
 if __name__ == "__main__":
     main()
