@@ -32,7 +32,7 @@ class SudokuSolver:
     """
     def solve_sudoko(self):
         #To find empty space in the board
-        empty_space_location = self.findEmpty(self.board)
+        empty_space_location = self.findEmpty()
         if empty_space_location:
             row = empty_space_location
             col = empty_space_location
@@ -41,7 +41,7 @@ class SudokuSolver:
         
         for i in range(1,10):
             #chekh is the move is valid
-            if isValid(self.board, (row, col), i):
+            if isValid((row, col), i):
                 self.board[row][col] = i
 
                 if self.solve_sudoko():
@@ -61,6 +61,22 @@ class SudokuSolver:
                 if self.board[row_index][col_index] == 0:
                     return (row_index, col_index)
         return None
+    
+    """
+    This method checks if the move is valid
+    @param position: row index and column index
+    @param value: Number between 1-9
+    @return: Boolean
+    """
+    def isValid(self, position, value):
+        #Checking row
+        for row_index in range(len(self.board)):
+            if self.board[position[0]][row_index] == value and position[1] != row_index:
+                return False
+        
+        #Checking Column
+
+
 
 
 
