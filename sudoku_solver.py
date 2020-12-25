@@ -32,10 +32,10 @@ class SudokuSolver:
     """
     def solve_sudoko(self):
         #To find empty space in the board
-        isEmpty = find_empty_space(self.board)
-        if isEmpty:
-            row = isEmpty
-            col = isEmpty
+        empty_space_location = self.findEmpty(self.board)
+        if empty_space_location:
+            row = empty_space_location
+            col = empty_space_location
         else:
             return True
         
@@ -55,7 +55,7 @@ class SudokuSolver:
     @param: None
     @return: row index, column index
     """
-    def isEmpty(self):
+    def findEmpty(self):
         for row_index in range(len(self.board)):
             for col_index in range(len(self.board[0])):
                 if self.board[row_index][col_index] == 0:
